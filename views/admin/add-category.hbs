@@ -1,0 +1,53 @@
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Add category</h2>
+                <form action="/admin/add-category" id="form" method="POST" enctype="multipart/form-data">
+                    <label for="Name">Category Name</label>
+                    <input type="text" id="name" name="Name" class="form-control">
+                      <div>
+
+                          <span id="error_name"></span>
+                      </div>
+        
+                    <label for="Image">Image</label>
+                    <input type="file" name="Image" class="form-control">
+
+                    
+
+                   
+
+                   
+
+                    <button type="submit" class="btn btn-success mt-4">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+   const form=document.getElementById("form")
+
+   form.addEventListener('submit',(e)=>{
+       const error=[]
+
+
+       var name=document.getElementById("Name")
+
+       if(name.value==""){
+           e.preventDefault()
+           error.push("Name is required")
+       }
+
+       var error_name=document.getElementById("error_name")
+
+       if(error.length>0){
+           error_name.innerText=error.join(" , ")
+       }
+
+
+   })
+
+</script>

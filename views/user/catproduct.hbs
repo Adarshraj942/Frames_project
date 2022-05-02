@@ -1,0 +1,58 @@
+
+ 
+ <section>
+        <div class="container mt-5">
+            <div class="row">
+                {{#each catproducts}}
+                 <div class="col-lg-3 col-md-6 col-12" >
+                    <!-- Start Single Product -->
+                         
+                       
+                   {{!-- <a href="/product-detials/{{this._id}}"> --}}
+
+                    <div class="single-product" >
+                        <div class="product-image">
+                            
+                           {{#if this.proOfferPercentage}}
+                            <span class="sale-tag">-{{this.proOfferPercentage}}%</span> 
+                            {{else if catOfferPercentage  }}
+                               <span class="sale-tag">-{{this.catOfferPercentage}}%</span> 
+                            {{/if}} 
+                          
+
+
+
+
+                            <img src="/product-images/{{this._id}}a.jpg" style="height: 18em;"alt="#">
+                            <div class="button">
+                                {{!-- <a href="/add-to-cart/{{this._id}}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a> --}}
+                                <button class="btn btn-primary" onclick="addToCart('{{this._id}}')">Add to cart</button>
+                            </div>
+                        </div>
+                        <div class="product-info" >
+                            <span class="category">{{this.Category}}</span>
+                            <h4 class="title">
+                                <a href="/product-detials/{{this._id}}">{{this.Name}}</a>
+                            </h4>
+                            <ul class="review">
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star-filled"></i></li>
+                                <li><i class="lni lni-star"></i></li>
+                                <li><span>4.0 Review(s)</span></li>
+                            </ul>
+                            <div class="price">
+                                <span>₹{{this.Price}}</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                   {{!-- </a> --}}
+                    <!-- End Single Product -->
+                </div>
+              
+               {{/each}}
+            </div>
+        </div>
+    </section>

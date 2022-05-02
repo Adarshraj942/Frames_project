@@ -1,0 +1,101 @@
+
+
+                     <div class="wrapper1" style="background-color: #FFE3E3;">
+
+                         <div class="logo"> <img src="/images/logo1.png" alt=""> </div>
+    <div class="text-center mt-4 name" style="font-family: 'Times New Roman', Times, serif;color:brown;"> Frames </div>
+
+                         <div class="form-group">
+                            <label for="email" class="label">Phone Number</label>
+                             <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> 
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Eg: 8086370123"/></div>  <button type="button" class="btn btn-primary" id="getOTP">Get OTP</button>
+                            <div class="pt-2" id="invalidPhone"></div>
+                            <div class="d-flex justify-content-center">
+                              
+                                
+                            </div>
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="password" class="label">Enter OTP</label>
+                                 <div class="form-field d-flex align-items-center position-relative"> <span class="fas fa-key"></span> 
+                                    <input name="otp" class="form-control" id="otpField"/></div><button class="btn btn-success " type="button" id="verify">Verify</button>
+                              
+                                <div id="incorrectOTP"></div>
+                            </div>
+                            
+                                
+                            
+                        </form>
+                    
+                    </div>
+
+                    {{!-- <div class="wrapper">
+    <div class="logo"> <img src="/images/logo1.png" alt=""> </div>
+    <div class="text-center mt-4 name" style="font-family: 'Times New Roman', Times, serif;color:brown;"> Frames </div>
+   
+
+  <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="text" name="phone" id="phone" placeholder="Mobile Number"> </div> <button id="getOTP" class="btn mt-3">Get OTP</button>
+  <div class="pt-2" id="invalidPhone"></div>
+    <form  class="p-3 mt-3">
+  
+       
+        <div class="form-field d-flex align-items-center position-relative"> <span class="fas fa-key"></span> <input type="password" name="otp" id="otpField" placeholder="OTP"> </div> <button id="verify" class="btn mt-3">Verify OTP</button>
+         <div id="incorrectOTP"></div>
+    
+    
+    </form>
+    <div class="text-center fs-6"> <a href="/login">Resend OTP</a></div>
+</div> --}}
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+{{!-- <script src="/javascripts/loginValidation.js" async defer></script>
+<script src="/javascripts/signupValidation.js" async defer></script> --}}
+<script>
+    let getOTP = document.querySelector('#getOTP')
+    getOTP.addEventListener('click', (e) => {
+        let xhr = new XMLHttpRequest()
+        xhr.open('post', '/otp', true)
+        let phone = document.querySelector('#phone').value
+        let phoneField = document.querySelector('#invalidPhone')
+        let incorrectPhone = document.createElement('p')
+        if(phone.length == 10 && /^\d+$/.test(phone))
+        {
+            phoneField.remove(incorrectPhone)
+        }
+        else{
+            incorrectPhone.textContent = "Invalid Phone Number"
+            incorrectPhone.style.color = 'red'
+            phoneField.appendChild(incorrectPhone)
+        }
+        let params = "phone=" + phone
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send(params)
+    })
+
+    
+    let verify = document.querySelector('#verify')
+    
+    verify.addEventListener('click', (e) => {
+        let otpFieldVal = document.querySelector('#otpField').value
+        let params = 'otp='+otpFieldVal
+        let xhr2 = new XMLHttpRequest()
+        xhr2.onreadystatechange = () => {
+        if(xhr2.readyState == 4){
+            if(xhr2.responseText == 'true'){
+                location.href = '/'
+            }
+            else{
+                let incorrectOTPDiv = document.querySelector('#incorrectOTP')
+                let incorrectOTP = document.createElement('p')
+                incorrectOTP.textContent = "Incorrect OTP. Please re-check and enter."
+                incorrectOTP.style.color = 'red'
+                incorrectOTPDiv.appendChild(incorrectOTP)
+            }
+            }
+        }
+        xhr2.open('post', '/verify_otp')
+        xhr2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhr2.send(params)
+        
+    })
+</script>

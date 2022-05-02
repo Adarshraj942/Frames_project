@@ -1,0 +1,94 @@
+{{!-- <div class=" row">
+   <div class="col-md-6 m-auto">
+      <div class="container mt-5 pl-5">
+          <h2 class="text-center">Create new account</h2>
+          <form action="/signup" id="form" method="POST">
+             {{#if check}}
+             <p class="error text-center">Email already use</p>
+             {{/if}}
+
+             <div class="form-group mt-2">
+                 <label>Name</label>
+                 <input type="text" id="name" class="form-control" name="Name" placeholder="Enter Name">
+             </div>
+              <span id="errorName"></span>
+
+             <div class="form-group mt-2">
+                 <label>Email address</label>
+                 <input type="email" class="form-control" id="email" name="Email" placeholder="Enter email">
+             </div>
+             <span id="errorEmail"></span>
+             <div class="form-group mt-2">
+                 <label>Password</label>
+                 <input type="password" class="form-control" id="password" name="Password" placeholder="Password">
+             </div>
+             <span id="errorPassword"></span>
+              <a href="/login">Already have an account ?</a>
+             <button type="submit" class="btn btn-primary float-right mt-5">Signup</button>
+          </form>
+      </div>
+   </div>
+</div> --}}
+
+
+
+<div class="wrapper1" style="background-color: #FFE3E3;">
+    <div class="logo"> <img src="/images/logo1.png" alt=""> </div>
+    <div class="text-center mt-4 name" style="font-family: 'Times New Roman', Times, serif;color:brown;"> Frames </div>
+   
+    {{#if check}}
+             <p class="error text-center">Email already use</p>
+             {{/if}}
+
+
+    <form action="/signup"  id="form" method="POST" class="p-3 mt-3">
+        <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="text" name="Name" id="name" placeholder="Name"> </div>
+        <span id="errorName" style="color: red;"></span>
+       <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="text" name="Email" id="Email" placeholder="Email"> </div>
+       <span id="errorEmail" style="color: red;"></span>
+        <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="Password" id="password" placeholder="Password"> </div> <button class="btn mt-3">Signup</button>
+       <span id="errorPassword" style="color: red;" ></span>
+       <input type="text" name="referId"  value="{{referId}}" hidden>
+    </form>
+    <div class="text-center fs-6"> <a href="/login">Already have an account</a></div>
+</div>
+ 
+
+ <script>
+
+  const form=document.getElementById("form")
+
+  form.addEventListener('submit',(e)=>{
+      const error1=[]
+      const error2=[]
+      var name=document.getElementById("name")
+       var Email=document.getElementById("Email")
+      if(name.value==""){
+          e.preventDefault()
+          error1.push("please enter name")
+      }
+
+      var pattern= /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/;
+
+      if(Email.value.match(pattern)){
+          
+      }else{
+          e.preventDefault()
+          error2.push('enter valid email')
+      }
+        
+        const errorName=document.getElementById("errorName")
+        const errorEmail=document.getElementById("errorEmail")
+  if(error1.length>0){
+      errorName.innerText=error1.join(" , ")
+  }
+
+  if(error2.length>0){
+      errorEmail.innerText=error2.join(" , ")
+  }
+
+
+  })
+ </script>
+
+  

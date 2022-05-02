@@ -1,0 +1,71 @@
+
+
+
+
+<section style="height: 70vh;" >
+        <div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center" >
+        <div class="col-md-10">
+            <div class="card" style="height: 65vh;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3" >
+                            
+                            <div class="text-center p-4" style="border-color: blue;" id="product-Images" > <img id="main-image"src="/product-images/{{products._id}}a.jpg" width="300" height="450" /> </div>
+                          
+                            <div class="thumbnail text-center" style="height: 10vh;"> <img class="ms-2 mt-2" onclick="change_image(this)" src="/product-images/{{products._id}}a.jpg" width="70"><img class="ms-3 mt-2" onclick="change_image(this)" src="/product-images/{{products._id}}c.jpg" width="70" height="70"> <img class="ms-3 mt-2" onclick="change_image(this)" src="/product-images/{{products._id}}d.jpg" width="70"> </div>
+                        
+                       
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="background-color: rgb(241, 237, 241);" >
+                        <div class="product p-4" style="height: 65vh;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i>  </div>
+                            </div>
+                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">{{products.category}}</span>
+                                <h5 class="text-uppercase">{{products.Name}}</h5>
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price">{{products.Price}}</span>
+                                    {{!-- <div class="ml-2"> <small class="dis-price">$59</small> <span>40% OFF</span> </div> --}}
+                                </div>
+                            </div>
+                             <p class="about">{{products.Description}}</p>
+                           {{!-- <div class="sizes mt-5"> 
+
+                                 <h6 class="text-uppercase">Size</h6> <label class="radio"> <input type="radio" name="size" value="S" checked> <span>S</span> </label> <label class="radio"> <input type="radio" name="size" value="M"> <span>M</span> </label> <label class="radio"> <input type="radio" name="size" value="L"> <span>L</span> </label> <label class="radio"> <input type="radio" name="size" value="XL"> <span>XL</span> </label> <label class="radio"> <input type="radio" name="size" value="XXL"> <span>XXL</span> </label>
+                            </div>  --}}
+                        
+                            <div class="cart mt-4 align-items-center"> <button class="btn btn-primary text-uppercase mr-2 px-4">Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+        <script src="https://unpkg.com/js-image-zoom@0.7.0/js-image-zoom.js" type="application/javascript"></script>
+
+        <script src="\javascripts\validation.js"></script> 
+
+
+<script>
+function change_image(image){
+
+var container = document.getElementById("main-image");
+
+container.src = image.src;
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+
+
+
+
+
+
+});
+</script>

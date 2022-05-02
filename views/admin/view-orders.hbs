@@ -1,0 +1,141 @@
+<div class="row">
+
+<div class="col-md-6 ">
+
+<table class=" table table-light">
+  <thead >
+    <tr >
+      <th scope="col" >Customer</th>
+      <th scope="col">OrderId</th> 
+      
+       
+      <th scope="col">Address</th>   
+     
+       <th scope="col">Pin</th> 
+     
+      <th scope="col">Amount</th>
+       <th scope="col">Payment</th> 
+      <th scope="col">Status</th>
+
+       <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each orders}}
+    <tr>
+         <td>{{this.deliveryDetials.Name}}</td>
+        <td>{{this._id}}</td>
+  
+      <td>{{this.deliveryDetials.House}}</td>  
+     
+       <td>{{this.deliveryDetials.PIN}}</td>
+      
+       <td>₹{{this.totalAmount}}</td>
+       <td>{{this.paymentMethod}}</td>
+      <td >{{this.status}}</td>
+      {{!-- {{#if this.Cancelled}}
+
+      <td class="btn btn-primary">undo</td>
+      {{else}}
+      <td>
+          
+
+
+           <a href="/cancel-order-admin/{{this._id}}" class="btn btn-secondary">Cancel Order</a>
+
+
+      </td>
+      {{/if}} --}}
+   <td>
+    
+
+    
+<div class="dropdown">
+  <button class="btn btn-light " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    options
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
+    {{!-- <a class="dropdown-item" href="/admin/cancel-order-admin/{{this._id}}">Cancel order</a> --}}
+  
+     {{#if this.Cancelled}}
+      <a class="dropdown-item" href="/admin/cancel-order-admin/{{this._id}}">View products</a>
+      {{else}}
+       <a class="dropdown-item" href="/admin/cancel-order-admin/{{this._id}}">View products</a>
+         <button href="" class="btn btn-light" onclick="cancel('/admin/cancel-order-admin/{{this._id}}')">Cancel</button>
+    {{!-- <a class="dropdown-item" href="/admin/order-shipped/{{this._id}}">Shipped</a> --}}
+    {{!-- <a class="dropdown-item" onclick="" href="/admin/order-delivered/{{this._id}}">Delivered</a> --}}
+     <button href="" class="btn btn-light" onclick="shipped('/admin/order-shipped/{{this._id}}')">Shipped</button>
+           <button href="" class="btn btn-light" onclick="delivered('/admin/order-delivered/{{this._id}}')">Delivered</button>
+     {{/if}}
+  </div>
+</div>
+
+   </td>
+
+
+
+
+
+    </tr>
+     {{/each}}
+   
+  </tbody>
+</table>
+</div>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function delivered(value){
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You want to Change stautus to delivered?",
+  icon: 'warning',
+  showCancelButton: true,
+  cancelButtonText:"no",
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Change!'
+}).then((result) => {
+  if (result.isConfirmed) {    
+      window.location =  value    
+  }
+})
+}
+function cancel(value){
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You want to Cancel order?",
+  icon: 'warning',
+  showCancelButton: true,
+   cancelButtonText:"no",
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes!'
+}).then((result) => {
+  if (result.isConfirmed) {    
+      window.location =  value    
+  }
+})
+}
+
+function shipped(value){
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You want to change status to shipped?",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, change!'
+}).then((result) => {
+  if (result.isConfirmed) {    
+      window.location =  value    
+  }
+})
+}
+  
+
+
+  
+</script>

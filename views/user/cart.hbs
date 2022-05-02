@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+    <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row mt-2">
+        <aside class="col-lg-9 ">
+            <div class="card" >
+                <div class="table-responsive mx-auto mt-5   ">
+                    <table class="table table-borderless table-shopping-cart">
+                       
+                        {{#if products}}
+                        <thead class="text-muted">
+                            <tr class="small text-uppercase">
+                                <th scope="col ">Product</th>
+                                 <th scope="col ms-2">Name</th>
+                                  <th scope="col">Description</th>
+                                <th scope="col" width="120">Quantity</th>
+                                <th scope="col" width="120">Price</th>
+                                <th scope="col" class="text-right d-none d-md-block" width="200"></th>
+                            </tr>
+                        </thead>
+                       {{else}}
+                       <h1 style="font-family: 'Times New Roman', Times, serif; color:brown;">Cart is empty...!</h1>
+                       {{/if}}
+                       
+                        <tbody>
+                            {{#each products}}
+                            <tr>
+                              
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <div class="aside"><img src="/product-images/{{this.product._id}}a.jpg" class="img-sm" style="height: 75px;width:75px;"></div>
+                                      
+                                           
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                           <td>
+                                 <figcaption class="info"> <a href="#" class=" text-dark" data-abc="true" >{{this.product.Name}}</a>
+
+                           </td>
+                           <td>
+                                <p class="text-muted small">  {{this.product.Description}}</p>
+
+                           </td> 
+                             
+                                <td> 
+                                     <button  style="background-color: #E4D8DC;margin-right: 5px; " class="cart-item-count  btn" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">  -  </button>
+                                    
+                                        <span id="{{this.product._id}}">{{this.quantity}}</span>
+                                     
+                                      <button  style="background-color: #E4D8DC;margin-left:5px;" class="cart-item-count btn" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)"> +  </button>
+                                <td>
+                                    <div class="price-wrap"> <var class="price"></var> <h5 class="text-muted">
+                                         ₹{{this.product.Price}} 
+                                         </h5> </div>
+                                </td>
+                          
+                                <td class="text-right d-none d-md-block">
+                                 {{!-- <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-danger" data-toggle="tooltip" data-abc="true"> <i class="fa fa-heart"></i></a> --}}
+                                 {{!-- <a href="" class="btn btn-danger" data-abc="true"> Remove</a> --}}
+                                  <button style="background-color: #E4D8DC;" class="cart-item-count btn" onclick="removeFromCart('{{this._id}}','{{this.product._id}}')">      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-x" viewBox="0 0 16 16">
+  <path d="M7.354 5.646a.5.5 0 1 0-.708.708L7.793 7.5 6.646 8.646a.5.5 0 1 0 .708.708L8.5 8.207l1.146 1.147a.5.5 0 0 0 .708-.708L9.207 7.5l1.147-1.146a.5.5 0 0 0-.708-.708L8.5 6.793 7.354 5.646z"/>
+  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+</svg></button>
+                                  </td>
+                                {{/each}}
+                            </tr>
+                           
+                          
+                            {{!-- <tr>
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <div class="aside"><img src="https://i.imgur.com/hqiAldf.jpg" class="img-sm"></div>
+                                        <figcaption class="info"> <a href="#" class="title text-dark" data-abc="true">Flower Formal T-shirt</a>
+                                            <p class="text-muted small">SIZE: L <br> Brand: ADDA </p>
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td> <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select> </td>
+                                <td>
+                                    <div class="price-wrap"> <var class="price">$15</var> <small class="text-muted"> $12 each </small> </div>
+                                </td>
+                                <td class="text-right d-none d-md-block"> <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip" data-abc="true"> <i class="fa fa-heart"></i></a> <a href="" class="btn btn-light btn-round" data-abc="true"> Remove</a> </td>
+                            </tr> --}}
+                            {{!-- <tr>
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <div class="aside"><img src="https://i.imgur.com/UwvU0cT.jpg" class="img-sm"></div>
+                                        <figcaption class="info"> <a href="#" class="title text-dark" data-abc="true">Printed White Tshirt</a>
+                                            <p class="small text-muted">SIZE:M <br> Brand: Cantabil</p>
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td> <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select> </td>
+                                <td>
+                                    <div class="price-wrap"> <var class="price">$9</var> <small class="text-muted"> $6 each</small> </div>
+                                </td>
+                                <td class="text-right d-none d-md-block"> <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip" data-abc="true"> <i class="fa fa-heart"></i></a> <a href="" class="btn btn-light btn-round" data-abc="true"> Remove</a> </td>
+                            </tr> --}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-lg-3">
+            <div class="card mb-3">
+                <div class="card-body">
+                   
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <dl  class="dlist-align">
+                            {{#each products}}
+                            {{#if this.product.actualPrice}}
+                        <dt>Actual Price for each product:
+                        
+                            
+                              <del style="color: red;">{{this.product.actualPrice}}</del>
+                             
+                           
+
+                        </dt>
+                         {{/if}}
+                         {{/each}}
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Discount:
+                           
+                            {{#each products }}
+                            {{#if this.product.catOfferPercentage}}
+                            {{this.product.catOfferPercentage}}%
+                            {{else if this.product.proOfferPercentage }}
+                             {{this.product.proOfferPercentage}}%
+                             {{else}}
+                             <p>No offer </p>
+                            {{/if}}
+
+                           {{/each}}
+                            
+                            
+                            </dt>
+                        <dd class="text-right text-danger ml-3"></dd>
+                    </dl>
+                   <dl class="dlist-align">
+                        <dt>Total price:</dt>
+                         <h4 class="text-right text-dark b ml-3"><span id="total">₹{{totalvalue}}</span></h4>
+                    </dl>
+                    <hr> <a style="background-color:" href="/" class="btn btn-outline-primary  btn-square btn-main" data-abc="true"> Continue Shopping </a> <a style="background-color: ;" href="/placeOrder" class="btn btn-out btn-outline-success btn-square btn-main mt-2" data-abc="true"> Make  a  Purchase </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+<script>
+
+    function changeQuantity(cartId,proId,userId,count){
+        let quantity=parseInt(document.getElementById(proId).innerHTML)
+        count=parseInt(count)
+        $.ajax({
+            url:'/change-product-quantity',
+            data:{
+                user:userId,
+                cart:cartId,
+                product:proId,
+                count:count,
+                quantity:quantity
+
+            },
+            method:'post',
+            success:(response)=>{
+             if(response.removeProduct){
+              //   alert("product removed from the cart")
+               
+            Swal.fire('item has removed')
+            setTimeout(()=>{
+                location.reload()
+            },2000)
+                 
+             }
+             else{
+                 document.getElementById(proId).innerHTML=quantity+count
+                 document.getElementById('total').innerHTML=response.total
+             }
+
+
+            }
+        })
+    }
+
+    function removeFromCart(cartId,proId){
+      $.ajax({
+          url:"/remove-product-from-cart",
+          data:{
+              cart:cartId,
+              product:proId
+          },
+          method:'post',
+          success:(response)=>{
+              if(response.removeProduct){
+                setTimeout(
+                      Swal.fire('item has removed'),3000
+                )
+                
+                  location.reload()
+              }else{
+                  location.reload()
+              }
+          }
+      })
+
+    }
+</script>
+
+</body>
+</html>

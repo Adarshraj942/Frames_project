@@ -1,0 +1,123 @@
+<div class="container mt-4">
+<section style="padding-bottom: 100px; ">
+    <table class="table" id="DataTable">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <a href="#add" class="btn btn-info ml-auto" style="margin-top: 20px;">Add New
+                    Offer</a>
+            </div>
+        </div>
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Percentage</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each proOffers}}
+            <tr>
+                <td scope="row"></td>
+                <td>{{this.Product}}</td>
+                <td>{{this.Starting}}</td>
+                <td>{{this.Expiry}}</td>
+                <td>{{this.proOfferPercentage}}</td>
+                <td>
+                    {{!-- <a href="/admin/edit-proOffer/{{this._id}}" class="btn btn-info"><i class="fas fa-edit"></i></a> --}}
+                    <a class="btn btn-danger" href="/admin/delete-proOffer/{{this._id}}" name="{{this.Category}}"
+                        onclick="deleteBrand(event)"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody> 
+    </table>
+</section>
+</div>
+<hr>
+<section id="add" class="mb-5">
+    <div class="half">
+        <div class="bg order-1 order-md-2" style="background-image: url('/adminLogin/images/bg_1.jpg');"></div>
+        <div class="contents order-2 order-md-1">
+            <div class="container">
+                    <div class="col-md-12">
+                <div class="row align-items-center justify-content-center">
+                        <div class="col-md-6">
+                            <div class="form-block" id="pro">
+                                <div class="text-center mb-5">
+                                    <h3>Product <strong>Offer</strong></h3>
+                                </div>
+                                <form action="/admin/product-offers" id="productPage" method="post">
+                                    {{#if proOfferExist}}
+                                    <div class="alert alert-danger" role="alert">
+                                        A offer for this product already Exist!
+                                    </div>
+                                    {{/if}}
+                                    <div class="form-group first">
+                                        <label for="proList">Product List</label>
+                                        <select name="Product" id="product" class="custom-select p-2">
+                                        <option value="" selected>Choose a Product</option>
+                                         {{#each products}}
+                                          <option value="{{this.Name}}">{{this.Name}}</option>
+                                          {{/each}}
+                                          </select>
+                                        {{#if proErr}}
+                                        <p class="text-center text-danger">{{proErr}}</p>
+                                        {{/if}}
+                                        <label class="pt-4">Starting Date</label>
+                                        <input type="Date" class="form-control " required name="Starting" id="str">
+                                        <label class="pt-4">Expiry Date</label>
+                                        <input type="Date" class="form-control" required name="Expiry" id="exp">
+                                        <label class="pt-4">Offer Percentage</label>
+                                        <input type="text" onkeypress="return isNumber(event)" min="1" max="95"
+                                            class="form-control" required name="proOfferPercentage">
+                                    </div>
+                                    <input type="submit" value="Add" id="prosub" class="btn btn-block btn-info">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $("#proSelect").select2({
+        placeholder: "Select A Product",
+        allowClear: true
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        let today = new Date()
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = yyyy + '-' + mm + '-' + dd;
+        $('#str').attr('min', today)
+        $('#str').change(function () {
+            let date = document.getElementById('str').value
+            $('#exp').attr('min', date)
+        })
+    })
+</script>
+<script>
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+</script>

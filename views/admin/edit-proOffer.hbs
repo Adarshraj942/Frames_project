@@ -1,0 +1,74 @@
+<section id="add" class="mb-5">
+    <div class="half">
+        <div class="contents order-2 order-md-1">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-block" id="pro">
+                                <div class="text-center mb-5">
+                                    <h3>Product <strong>Offer</strong></h3>
+                                </div>
+                                <form action="/admin//edit-proOffer/{{proOffer._id}}" id="productPage" method="post">
+                                    <div class="form-group first">
+                                        <input list="products" name="Product" value="{{proOffer.Product}}"
+                                            class="form-control" autocomplete="off" id="product">
+                                        <datalist id="products">
+                                            {{#each products}}
+                                            <option value="{{this.name}}">
+                                                {{/each}}
+                                        </datalist>
+                                        <label class="pt-4">Starting Date</label>
+                                        <input type="Date" class="form-control" required value="{{proOffer.Starting}}"
+                                            name="Starting" id="str">
+                                        <label class="pt-4">Expiry Date</label>
+                                        <input type="Date" class="form-control" required name="Expiry"
+                                            value="{{proOffer.Expiry}}" id="exp">
+                                        <label class="pt-4">Offer Percentage</label>
+                                        <input type="text" class="form-control" onkeypress="return isNumber(event)"
+                                            min="1" required value="{{proOffer.proOfferPercentage}}" max="99" name="offerPercentage">
+
+                                    </div>
+                                    <input type="submit" value="Edit" id="prosub" class="btn btn-block btn-primary">
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        let today = new Date()
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = yyyy + '-' + mm + '-' + dd;
+        $('#str').attr('min', today)
+        $('#str').change(function () {
+            let date = document.getElementById('str').value
+            $('#exp').attr('min', date)
+        })
+    })
+</script>
+<script>
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+</script>

@@ -1,0 +1,186 @@
+<div class="row">
+                        <div class="col-md-12">
+                             <div class="text-center ">
+                                 <h4>Sales report:{{sDate}} - {{eDate}}</h4>
+                             </div>
+                            
+                            <form action="/admin/sales-report" method="post">
+                                <div class="form-row">
+                                    <div class="form-group col-md-4 mt-5 ">
+                                        <label for="start">Starting Date</label>
+                                        <input type="date" class="form-control" id="start" name="StartDate" required>
+                                    </div>
+                                    <div class="form-group col-md-4 mt-5">
+                                        <label for="end">Ending Date</label>
+                                        <input type="date" class="form-control" id="end" name="EndDate" required>
+                                    </div>
+                                    <div class="form-group col-md-1 mt-5" >
+                                        <input type="submit" style="margin-top: 2em;" value="Submit" class="btn btn-block btn-primary">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+<div class="container">
+    <div class="main-body mt-5">
+    
+     
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class=" text-center">
+                   
+                    <div class=" text-start">
+                      <h6 style="background-color: gray;">Orders Summary</h6>
+                 <div>
+                          <h6 class="text-muted font-size-sm">Total sale  :   {{data.totalSales}}</h6></div>
+                     
+                          <h6 class="text-muted font-size-sm">Total order  :{{data.totalOrders}}</h6>
+                    
+                          <h6 class="text-muted font-size-sm">order Confirmed  :{{data.successOrders}}</h6>
+                     
+                          <h6 class="text-muted font-size-sm">Razorpay payment :{{data.razorpay}}</h6>
+                     
+
+                       
+                          <h6 class="text-muted font-size-sm">Paypal payment  :{{data.paypal}}</h6>
+                    
+                          <h6 class="text-muted font-size-sm">COD  :{{data.cod}}</h6>
+                   
+                     
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-3">
+            
+              </div>
+            </div>
+
+            
+            <div class="col-md-8">
+              <div class="card mb-3">
+                   
+                <div class="card-body">
+                    
+                   
+                   
+                      <div class="chart-container"  style="position: relative; height:32vh; width:30vw;">
+                   <div style="background-color: rgb(158, 154, 154);">
+                   <h6 style=>Order detials</h6>
+                   </div>
+                <div>
+                 <canvas id="myChart" ></canvas>
+                </div>
+            </div> 
+                </div>
+                
+              </div>
+
+            
+              </div>
+     <div class="card mt-3">
+            
+              </div>
+            </div>
+
+            
+            <div class="col-md-8">
+              <div class="card mb-3">
+                   
+                <div class="card-body">
+                    
+                   
+                   
+                      <div class="chart-container"  style="position: relative; height:32vh; width:30vw;">
+                   <div style="background-color: rgb(158, 154, 154);">
+                   <h6 style=>Order detials</h6>
+                   </div>
+                <div>
+                 <canvas id="line" ></canvas>
+                </div>
+            </div> 
+                </div>
+             
+
+            </div>
+              
+            </div> 
+                </div>
+          </div>
+          
+
+        </div>
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+   <script>
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['TotalOrders', 'Sucess ', 'cancelled '],
+        datasets: [{
+            label: 'Orders',
+            data: [{{data.totalOrders}},{{data.successOrders}},{{data.faildOrders}}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+var line = document.getElementById('line').getContext('2d');
+    var chart = new Chart(line, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['COD', 'Razorpay', 'Paypal'],
+            datasets: [{
+                label: 'Payment Method',
+                backgroundColor: 'rgba(342,0,0, 0.5)',
+
+
+                data: [{{ data.cod }}, {{ data.razorpay }},{{ data.paypal }}]
+			}]
+		},
+
+    // Configuration options go here
+    options: {
+        scales: {
+            yAxes: [{
+                stacked: true
+            }]
+        }
+    }
+	});
+</script>
+ 

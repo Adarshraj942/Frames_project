@@ -1,0 +1,389 @@
+
+
+            
+          
+ 
+
+<div class="checkout-wrapper section" style="margin-top: -5em;">
+
+      
+<div class="main_content_iner overly_inner">
+    
+  
+   <div class="container-fluid  " >
+
+      <div class="container">
+          <div class="card col-md-5">
+              <div class="card-body">
+                  <div class="">
+                      <h5 class="title">Coupons</h5><br>
+                                          <h6 id="CouponMsg"></h6>
+                                              <form id="ApplyCoupon" class="container-fluid w-100">
+                                        <div class=" container-fluid d-flex justify-content-between">
+                                            <div class="">
+                                                <input type="text" class=" text-center" name="coupon"
+                                                    style="margin-left:-10px;     padding: 7px ; box-sizing:  border-box;border: 1px solid rgb(47, 0, 255); border-radius: 4px; width: 250px;"
+                                                    placeholder="Enter Code">
+                                            </div>
+
+                                            <div class=""
+                                               >
+                                                <button type="submit" class="btn btn-outline-success "
+                                                    style="width: fit-content; height: fit-content;">Apply</button>
+                                            </div>
+                                        </div>
+                                    </form> 
+
+                  </div>
+              </div>
+          </div>
+         
+        <div class="mt-4  d-flex" style="margin-right: 10px;">
+              {{#each address}}
+          
+            <div class="col-md-4 d-flex"
+               style="box-shadow: rgb(219, 186, 211) 0px 6px 24px 0px, rgba(240, 213, 237, 0.897) 0px 0px 0px 1px;">
+              
+              
+               <div class="w-80 pt-2 ms-2">Address:<br /><b> {{this.house}}</b></div>
+                 <div class="w-80   pt-2 ms-2"><br /><b> {{this.street}}</b></div>
+                 <div class="w-80   pt-2 ms-2"><br /><b> {{this.town}}</b></div>
+                  <div class="w-75 pt-2 ms-2"><br /><b> {{this.pin}}</b></div>
+
+               
+            <button class="btn btn-outline-primary mx-auto my-auto " onclick="autoFill('{{this.house}}','{{this.Street}}','{{this.town}}','{{this.pin}}')" style="width: 60px;height:40px;">+</button>
+              
+               <div class="w-25"><img class="pt-2" style="width: 45px;" src="/images/profits.png" alt="" /></div>
+            </div>
+             
+           {{/each}} 
+         </div> 
+       
+      </div>
+   </div>
+</div>
+
+    <div class="container">
+      
+                    
+                    
+       <div class="col-md-112 card p-5">
+       
+        <div class="row">
+        <div class="row ">
+                 
+
+            <form action="" id="checkout-form" class="mt-3" method="POST">
+                
+            <div class="col-md-7 float-start">
+                <div class="checkout-steps-form-style-1">
+                   
+                    <ul id="accordionExample"> 
+                        <li>
+                            <h6 class="title collapsed text-primary">Shipping Address</h6>
+
+                            {{!-- address section starts --}}
+                            <section class="checkout-steps-form-content collapse show ">
+                            
+                                <div class="row">
+                                    <div class="card-body col-md-12 ">
+                                       <div class="single-form form-default">
+                                            
+                                            <div class="row">
+                                                <label>Full Name</label>
+                                                <div class=" form-input form" >
+                                                    <input type="text"  id="fname" class="form-control" value="{{user1.Name}}"  name="Name" placeholder="Enter Your Full Name" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-form form-default">
+                                            <label>House Name</label>
+                                            <div class="form-input form">
+                                                <input type="text" id="house"   name="House" class="form-control" placeholder="House Name" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-form form-default">
+                                            <label>Street Address</label>
+                                            <div class="form-input form">
+                                                <input id="street" name="Street" type="text" class="form-control" placeholder="Street Address" >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="single-form form-default">
+                                            <label>Town</label>
+                                            <div class="form-input form">
+                                                <input  type="text" id="city"  name="Town" class="form-control" placeholder="Town / City" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-form form-default">
+                                            <label>Pincode</label>
+                                            <div class="form-input form">
+                                                <input type="tel" id="pin"  class="form-control"name="PIN" maxlength="6" onkeypress="return isNumber(event)"  placeholder="Post Code" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-form form-default">
+                                            <label>Mobile</label>
+                                            <div class="form-input form">
+                                                <input type="tel" id="phone" value="{{user1.phone}}"  class="form-control" onkeypress="return isNumber(event)" name="Mobile" maxlength="10" placeholder="Phone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="single-form form-default">
+                                            <label>Email</label>
+                                            <div class="form-input form">
+                                                <input type="text" id="email"   class="form-control"  value="{{user1.Email}}" name="Email" placeholder="Email Address" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="text" name="userId" value="{{user._id}}" hidden>
+                                </div>
+                           
+                            </section>
+
+                            {{!-- address section ends --}}
+                           
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+         
+            <div class="col-lg-4 float-end">
+              {{#if wallet}}
+               <div class="card p-5" style="border-color: blue;">
+                   <div class="card-body">
+                        <div class="checkout-sidebar">
+                     <div class="order-products">
+                    <div class="order-col" style="color: rgb(182, 83, 83);">
+                         <span class="ms-4"><h6>Wallet Balance: <span style="color: red;"> {{wallet}} ₹</span></h6></span> <br>
+                        <input type="checkbox" id="wallet" name="checked" onclick="checkWallet('100','{{grandTotal}}')"
+                            value="100" />
+                       <span class="ms-2"><h6> Add Wallet amount</h6></span> <span class="ms-4"><p style="color: red;">limit  100₹</p></span>
+                     
+                        <div></div>
+                    </div>
+                </div>
+                     
+
+                   </div>
+               </div>
+                {{/if}}    
+                    <div class="checkout-sidebar-price-table mt-30">
+                        <h5 class="title">Pricing Table</h5>
+
+                        {{!-- <div class="sub-total-price">
+                            <div class="total-price">
+                                <p class="value">Subotal Price:</p>
+                                <p class="price">$144.00</p>
+                            </div>
+                            <div class="total-price shipping">
+                                <p class="value">Subotal Price:</p>
+                                <p class="price">$10.50</p>
+                            </div>--}}
+                            <div class="total-price discount">
+                           
+                                <p class="price" id="tootal">₹ {{total}}.00</p>
+                            </div> 
+                        </div>
+
+                        {{!-- <div class="total-payable">
+                            <div class="payable-price">
+                                <p class="value">Subotal Price:</p>
+                                <p class="price">$164.50</p>
+                            </div>
+                            </div> --}}
+                                  
+                               <hr>
+                                <div class="payable-price">
+                        <p class="value">Grand total:</p>
+                        <p class="price" id="total">{{grandTotal}}</p>
+
+                    </div>
+                                <div class="payment-method">
+                                                    <div class="payment-accordion element-mrg">
+                                                        <div id="faq" class="panel-group">
+                                                            <h5 class="title">Payment methods</h5>
+                                                            <input type="radio" name="Payment-method" value="COD"
+                                                                style="width:5%;height:auto">
+                                                                <label>Cash on Delivery</label>
+                                                                <br>
+                                                            <input type="radio" name="Payment-method" value="Razorpay"
+                                                                style="width:5%;height:auto"> <label>Razor Pay</label>
+                                                                <br>
+                                                            <input type="radio" name="Payment-method" value="Paypal"
+                                                                style="width:5%;height:auto"> <label>Paypal</label>
+                                                            <div id="paypal-payment-button"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                             <br>
+                        <div class="price-table-btn button">
+                            <button class="btn btn-primary btn-hover" id="submit" type="submit"
+                            style="width: 100%;" href="#">Place Order</button>
+                        </div>
+                    </div>
+                     {{!-- <div class="checkout-sidebar-banner mt-30">
+                        <a href="product-grids.html">
+                            <img src="https://via.placeholder.com/400x330" alt="#">
+                        </a>
+                    </div>  --}}
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+   </div>
+    </div>
+</div> 
+
+
+<script>
+    $('#ApplyCoupon').submit((e) => {
+       console.log("haiiii")
+        e.preventDefault()
+        $.ajax({
+            url: '/applyCoupon',
+            method: 'get',
+            data: $('#ApplyCoupon').serialize(),
+            success: (response) => {
+                if (response.CoupenUsed) {
+                    document.getElementById('CouponMsg').innerHTML = "Coupon Already Used"
+                }
+                else if (response.timeout) {
+                    document.getElementById('CouponMsg').innerHTML = "Coupon expired"
+                }
+                else if (response.Coupon) {
+                    let total = document.getElementById('tootal').innerHTML
+                    console.log(total);
+
+                    document.getElementById('CouponMsg').innerHTML = "Coupon Applied"
+                    document.getElementById("total").innerHTML = total - (response.CoupDiscount * total) / 100
+
+                    document.getElementById("coupon").innerHTML = response.CoupDiscount
+                }
+                else if (response.NoCoupon) {
+                    document.getElementById('CouponMsg').innerHTML = "No Coupon Found"
+                }
+                else if (response.OneCouponUsed) {
+                    document.getElementById('CouponMsg').innerHTML = "Already One Coupon Used"
+                }
+
+            }
+        })
+    })
+
+
+  
+
+$("#checkout-form").submit((e)=>{
+  e.preventDefault()
+  $.ajax({
+    url:'/place-order',
+    method:'post',
+    data:$("#checkout-form").serialize(),
+    success:(response)=>{
+      alert(response)
+      if(response.codSuccess){
+         location.href='/order-success'
+      }else if(response.razorpay){
+         razorpayPayment(response.resp)
+      }else if(response){
+           location.href = response.url
+
+      }
+    }
+  })
+})
+
+
+function razorpayPayment (order){
+    var options = {
+    "key": "rzp_test_Ucq2w4umTivUct", // Enter the Key ID generated from the Dashboard
+    "amount": order.amount  , // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Frames",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+       
+
+        verifyPayment(response,order)
+
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+ rzp1.open();
+
+}
+function verifyPayment(payment,order){
+    $.ajax({
+
+        url:'/verify-payment',
+        data:{
+            payment,
+            order
+        },
+        method:'post',
+        success:(response)=>{
+            if(response.status){
+                location.href="/order-success"
+            }else{
+                alert('payment failed')
+            }
+        }
+    })
+}
+
+function autoFill(house, street, town, pin) {
+ 
+        alert()
+        document.getElementById('house').value = house
+        document.getElementById('street').value = street
+        document.getElementById('city').value = town
+        document.getElementById('pin').value = pin
+       
+  
+        
+}
+
+
+
+
+</script>
+
+<script>
+    
+   
+    
+</script>
+<script src="/javascripts/side-bootstrap.min.js"></script>
+<script src="/javascripts/side-jquery.min.js"></script>
+<script src="/javascripts/side-main.js"></script>
+<script src="/javascripts/side-popper.js"></script>
+
+  

@@ -1,0 +1,50 @@
+<div class="container mt-5 mb-3">
+    <div class="row">
+        {{#each orders}}
+        <div class="col-md-4 mt-3">
+         
+            <div class="card p-3 mb-2">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <i class="bx bxl-mailchimp"></i> </div>
+                        <div class="ms-2 c-details">
+                            <h6 class="mb-0">Order number:</h6> <span>{{this._id}}</span>
+
+                        </div>
+                    </div>
+                    <div >Order Status: <h6 class="ms-3" style="background-color: rgb(14, 230, 201);">{{this.status}}</h6></div>
+                </div>
+                <div class="mt-5">
+                  <h4>₹{{this.totalAmount}}</h4><br>
+                    <h5 class="heading">Address:<br></h5>
+                    <h6>{{this.deliveryDetials.House}}</h6>
+                    <p>{{this.deliveryDetials.Town}}</p>
+                    <div class="mt-5">
+                      <h6>{{this.deliveryDetials.Mobile}}</h6>
+                      <p>Track your order</p>
+
+                        <div class="progress">
+                          
+                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                       <div class="mt-3">  {{#if this.Cancelled}}
+          <a href="/view-order-products/{{this._id}}" class="btn btn-light">view product</a>
+        {{else}}
+            <a href="/view-order-products/{{this._id}}" class="btn btn-outline-primary">view product</a>
+           <a href="/cancel-order/{{this._id}}" class="btn btn-outline-secondary">Cancel Order</a>
+         
+         {{/if}}</div>
+                    </div>
+                </div>
+                
+            </div>
+           
+        </div>
+         {{/each}}
+  
+        
+            
+        </div>
+</div>
+
+    
