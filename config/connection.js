@@ -3,7 +3,7 @@ const state={
     db:null
 }
 module.exports.connect=(done)=>{
-    const url='mongodb://localhost:27017'
+    const url=process.env.ATLAS
     const dbname='shopping'
 
     mongoCLlient.connect(url,(err,data)=>{
