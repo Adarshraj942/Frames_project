@@ -18,7 +18,6 @@ Features involved:
 * Advanced Payment Options(RazorPay,Paypal)
 * Cash On Delivery
 * Image Cropping
-* Responsive Design
 * High-Resolution Photos
 * Special Offers & Coupons
 * Referral System
@@ -26,8 +25,6 @@ Features involved:
 * Image Zooming
 * Related Items
 * Order History
-* Search Items
-* SMTP-gmail send
 * Wallet
 * Multiple Address Management
 * User Block/Unblock
@@ -41,6 +38,9 @@ Features involved:
 
 Future Updations :
 ----------------------------------
+* Responsive Design
+* SMTP-gmail send  
+* Search Items
 * Guest User
 * Google Authentication
 * Chat
