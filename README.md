@@ -1,6 +1,6 @@
 <h1> Ecommerce website<h1>
   
-  <p> is an E-commerce website that deals with selling Wall Frames.<p>
+  <p>Frames_project is an E-commerce website that deals with selling Wall Frames.<p>
   
   
 Technologies used :
