@@ -524,6 +524,7 @@ module.exports = {
           {
             $set: {
               status: "Shipped",
+              Shipped:"true"
             },
           }
         )
@@ -542,6 +543,7 @@ module.exports = {
           {
             $set: {
               status: "Delivered",
+              Delivered:true
             },
           }
         )

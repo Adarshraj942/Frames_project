@@ -59,14 +59,21 @@
     {{!-- <a class="dropdown-item" href="/admin/cancel-order-admin/{{this._id}}">Cancel order</a> --}}
   
      {{#if this.Cancelled}}
-      <a class="dropdown-item" href="/admin/cancel-order-admin/{{this._id}}">View products</a>
+      <a class="dropdown-item" href="/admin/view-order-admin/{{this._id}}">View products</a>
+        {{else if this.Delivered}}
+        
+   <a class="dropdown-item" href="/admin/view-order-admin/{{this._id}}">View products</a>
+   {{else if this.Delivered}}
+   <a class="dropdown-item" href="/admin/cancel-order-admin/{{this._id}}">View products</a>
       {{else}}
        <a class="dropdown-item" href="/admin/cancel-order-admin/{{this._id}}">View products</a>
          <button href="" class="btn btn-light" onclick="cancel('/admin/cancel-order-admin/{{this._id}}')">Cancel</button>
     {{!-- <a class="dropdown-item" href="/admin/order-shipped/{{this._id}}">Shipped</a> --}}
     {{!-- <a class="dropdown-item" onclick="" href="/admin/order-delivered/{{this._id}}">Delivered</a> --}}
      <button href="" class="btn btn-light" onclick="shipped('/admin/order-shipped/{{this._id}}')">Shipped</button>
+        
            <button href="" class="btn btn-light" onclick="delivered('/admin/order-delivered/{{this._id}}')">Delivered</button>
+          
      {{/if}}
   </div>
 </div>
